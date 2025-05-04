@@ -24,7 +24,7 @@ namespace Player.States
         {
             if(_runner.Movement.sqrMagnitude != 0)
             {
-                _runner.SetState(typeof(PlayerMoveState));
+                _runner.SetState(typeof(PlayerMove3DState));
             }
         }
     }

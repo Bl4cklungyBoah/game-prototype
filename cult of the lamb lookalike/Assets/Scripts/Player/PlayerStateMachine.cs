@@ -9,7 +9,7 @@ namespace Player
         [SerializeField] private PlayerInput _playerInput;
         //transform to rotate around when changing directions
         [SerializeField] private Transform _spriteTransform;
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Rigidbody _rigidbody;
 
         //this Vector2 can be used to determine changes on states
         public Vector2 Movement { get; private set; }
@@ -17,20 +17,29 @@ namespace Player
         //the sprite starts facing right so this is true
         private bool _isFacingRight = true;
 
+        public bool RollPressed;
+
         private void OnEnable()
         {
             _playerInput.MovementEvent += HandleMove;
+            _playerInput.RollEvent += HandleRoll;
         }
 
         private void OnDisable()
         {
             _playerInput.MovementEvent -= HandleMove;
+            _playerInput.RollEvent -= HandleRoll;
         }
 
         private void HandleMove(Vector2 movement)
         {
             Movement = movement;
             CheckFlipSprite(movement);
+        }
+
+        private void HandleRoll()
+        {
+            RollPressed = true;
         }
 
         private void CheckFlipSprite(Vector2 velocity)
@@ -41,7 +50,7 @@ namespace Player
             _spriteTransform.Rotate(_spriteTransform.rotation.x, 180f, _spriteTransform.rotation.z);
         }
 
-        public void Move(Vector2 velocity)
+        public void Move(Vector3 velocity)
         {
             _rigidbody.velocity = velocity;
         }

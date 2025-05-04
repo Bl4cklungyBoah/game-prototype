@@ -8,6 +8,7 @@ namespace Player.Input
     public class PlayerInput : MonoBehaviour, GameControls.IPlayerActions
     {
         public event UnityAction<Vector2> MovementEvent = delegate { };
+        public event UnityAction RollEvent = delegate { };
 
         private GameControls _playerActions;
 
@@ -45,6 +46,14 @@ namespace Player.Input
         public void OnMovement(InputAction.CallbackContext context)
         {
             MovementEvent?.Invoke(context.ReadValue<Vector2>());
+        }
+
+        public void OnRoll(InputAction.CallbackContext context)
+        { 
+            if(context.performed)
+            {
+                RollEvent?.Invoke();
+            }
         }
     }
 }
