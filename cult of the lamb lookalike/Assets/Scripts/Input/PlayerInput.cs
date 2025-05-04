@@ -9,6 +9,8 @@ namespace Player.Input
     {
         public event UnityAction<Vector2> MovementEvent = delegate { };
         public event UnityAction RollEvent = delegate { };
+        public event UnityAction RollCancelledEvent = delegate { };
+        public event UnityAction<bool> AttackEvent = delegate { };
 
         private GameControls _playerActions;
 
@@ -54,6 +56,16 @@ namespace Player.Input
             {
                 RollEvent?.Invoke();
             }
+            if(context.canceled)
+
+            {
+                RollCancelledEvent?.Invoke();
+            }
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            AttackEvent?.Invoke(context.performed);
         }
     }
 }

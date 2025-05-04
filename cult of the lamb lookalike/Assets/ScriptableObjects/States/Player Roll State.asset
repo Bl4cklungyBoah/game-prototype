@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Roll State
   m_EditorClassIdentifier: 
   _rollSpeed: 35
-  _rollTime: 0.5
+  _rollTime: 0.3
   _debug: 1

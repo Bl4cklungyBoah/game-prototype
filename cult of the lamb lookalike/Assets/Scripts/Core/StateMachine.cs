@@ -49,7 +49,7 @@ namespace StateMachine
             _activeState?.Tick(Time.deltaTime);
             _activeState?.ChangeState();
 
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
         }
 
         /// <summary>

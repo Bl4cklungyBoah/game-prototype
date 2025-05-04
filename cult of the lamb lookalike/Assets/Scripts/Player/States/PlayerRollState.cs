@@ -17,15 +17,12 @@ namespace Player.States
 
         public override void Enter(PlayerStateMachine parent)
         {
-            Debug.Log("Entered Roll State");
             base.Enter(parent);
+            parent.Animations.PlayRoll();
 
             // grab the direction were the player is aiming in a 3D plane
             var playerInput = new Vector3(parent.Movement.normalized.x, 0, parent.Movement.normalized.y);
-
-            // instantly set this to false so there's no double rolling
-            parent.RollPressed = false;
-
+           
             _elapsedTime = 0f;
 
             var startingPos = parent.transform.position;
